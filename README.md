@@ -1,17 +1,8 @@
 
-install dependencies:
+
+On first download, run:
 ```
-poetry install
+./scripts/install.sh
 ```
 
-run migrations:
-```
-poetry run python manage.py migrate
-```
-
-download csv into sqlite:
-```
-poetry run python import_from_csv --path ./pokemon.csv
-```
-
-
+it installs the dependencies, migrates the database up to date, and downloads the csv pokemon file into the database.
