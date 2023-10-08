@@ -3,7 +3,7 @@ from django.db import models
 
 class Pokemon(models.Model):
     attack = models.IntegerField()
-    classfication = models.CharField(max_length=255)
+    classification = models.CharField(db_column="classfication", max_length=255)
     defense = models.IntegerField()
     height_m = models.FloatField(blank=True, null=True)
     hp = models.IntegerField()

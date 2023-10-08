@@ -7,4 +7,4 @@ class PokemonViewSet(viewsets.ModelViewSet):
     queryset = Pokemon.objects.all()
     serializer_class = PokemonSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ["name"]
+    search_fields = ["name", "type1", "type2"]
