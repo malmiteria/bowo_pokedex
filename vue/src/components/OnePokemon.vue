@@ -16,7 +16,7 @@
 		<p>pokemon weight (kg): {{ pokemon.weight_kg }}</p>
 		<p>pokemon generation: {{ pokemon.generation }}</p>
 		<p>pokemon is legendary: {{ pokemon.is_legendary }}</p>
-		<img class="pokeface" :src=imageURL(pokemon)>
+		<img class="one_poke_please" :src=imageURL(pokemon)>
     </div>
 </template>
 
@@ -25,7 +25,7 @@
         props: ["id"],
         data() {
             return {
-                pokemon: ['']
+                pokemon: {}
             }
         },
         methods: {
@@ -57,7 +57,7 @@
 </script>
 
 <style>
-.pokeface {
+.one_poke_please {
   width: 450px;
   height: 450px;
 }

@@ -6,6 +6,15 @@
 			<input type="text" name="search_field"/>
 			<input type="submit" value="search"/>
 		</form>
+		<form @submit.prevent="sort">
+			<p>You can sort pokemons by number, height or weight.</p>
+			<select name="sort_field">
+				<option value="pokedex_number">number</option>
+				<option value="height_m">height</option>
+				<option value="weight_kg">weight</option>
+			</select>
+			<input type="submit" value="sort"/>
+		</form>
 		<div @click="pokemon_page(pokemon)" v-for="pokemon in pokemons" :key="pokemon.id">
 			<h2>{{ pokemon.name }}</h2>
 			<p>pokemon number: {{ pokemon.pokedex_number }}</p>
@@ -53,6 +62,14 @@
                     // log the error
                     console.log(error);
                 }
+            },
+            async sort(formData) {
+				const sortBy = formData.target.elements.sort_field.value;
+				this.pokemons.sort((a, b) => {
+					if (a[sortBy] < b[sortBy]) return -1
+					if (a[sortBy] > b[sortBy]) return 1
+					return 0;
+				});
             },
 			pokemon_page(pokemon) {
 				window.location.href = "/pokemon/" + pokemon.pokedex_number;
