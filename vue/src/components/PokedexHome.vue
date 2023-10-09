@@ -1,24 +1,28 @@
 <template>
     <div class="pokedex">
 		<h1>Pokedex</h1>
-		<form @submit.prevent="search">
-			<p>You can filter pokemons by name.</p>
-			<input type="text" name="search_field"/>
-			<input type="submit" value="search"/>
+		<form class="m-5" @submit.prevent="search">
+			<p class="block text-gray-500 font-bold">You can filter pokemons by name or type (empty search doesn't filter).</p>
+			<input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded m-2" type="text" name="search_field"/>
+			<input class="shadow bg-gray-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="search"/>
 		</form>
-		<form @submit.prevent="sort">
-			<p>You can sort pokemons by number, height or weight.</p>
-			<select name="sort_field">
+		<form class="" @submit.prevent="sort">
+			<p class="block text-gray-500 font-bold">You can sort pokemons by number, height or weight.</p>
+			<select class="m-2 appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="sort_field">
 				<option value="pokedex_number">number</option>
 				<option value="height_m">height</option>
 				<option value="weight_kg">weight</option>
 			</select>
-			<input type="submit" value="sort"/>
+			<input class="shadow bg-gray-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="sort"/>
 		</form>
-		<div @click="pokemon_page(pokemon)" v-for="pokemon in pokemons" :key="pokemon.id">
-			<h2>{{ pokemon.name }}</h2>
-			<p>pokemon number: {{ pokemon.pokedex_number }}</p>
-			<img class="pokeface" :src=imageURL(pokemon)>
+		<div class="grid grid-cols-5 gap-4 m-5">
+			<div v-for="pokemon in pokemons" :key="pokemon.id">
+				<div @click="pokemon_page(pokemon)" class="border-solid border-2 grid place-items-center">
+					<h2>{{ pokemon.name }}</h2>
+					<p>pokemon number: {{ pokemon.pokedex_number }}</p>
+					<img :src=imageURL(pokemon)>
+				</div>
+			</div>
 		</div>
     </div>
 </template>
@@ -81,10 +85,3 @@
         }
     }
 </script>
-
-<style>
-.pokeface {
-  width: 150px;
-  height: 150px;
-}
-</style>
